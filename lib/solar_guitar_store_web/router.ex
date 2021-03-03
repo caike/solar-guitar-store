@@ -12,6 +12,10 @@ defmodule SolarGuitarStoreWeb.Router do
     plug :fetch_current_user
   end
 
+  pipeline :authenticated do
+    plug SolarGuitarStoreWeb.GuardianAuthPipeline
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -20,6 +24,16 @@ defmodule SolarGuitarStoreWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+  end
+
+  scope "/api/v1", SolarGuitarStoreWeb.Api.V1 do
+    pipe_through [:api]
+    post "/session", SessionController, :create
+  end
+
+  scope "/api/v1", SolarGuitarStoreWeb.Api.V1 do
+    pipe_through [:api, :authenticated]
+    get "/guitars", GuitarController, :index
   end
 
   # Other scopes may use custom stacks.
