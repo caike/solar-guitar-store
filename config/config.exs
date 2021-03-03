@@ -26,6 +26,10 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :solar_guitar_store, SolarGuitarStoreWeb.Guardian,
+  issuer: "solar_guitar_store",
+  secret_key: "7Atm1Po2yL2vIMfbHpoY5vtQVmsHlTW1GBH56HGKTTwfZNxkzvlMa0J0IbKM5pcU"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
