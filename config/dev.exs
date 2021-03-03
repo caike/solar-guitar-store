@@ -16,6 +16,7 @@ config :solar_guitar_store, SolarGuitarStore.Repo,
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
 config :solar_guitar_store, SolarGuitarStoreWeb.Endpoint,
+  server: true,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
